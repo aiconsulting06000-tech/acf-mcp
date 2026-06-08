@@ -44,17 +44,15 @@ Add to Claude Desktop `claude_desktop_config.json`:
 }
 ```
 
-## Use over HTTP (remote)
-
-```json
-{
-  "mcpServers": {
-    "acf": { "type": "http", "url": "https://mcp.acfstandard.com" }
-  }
-}
-```
-
 No API key — V1.0 is open access (cf. `Position stratégique` in the spec).
+
+## Discover & install
+
+`acf-mcp` is a **local stdio server** — there is no hosted HTTP endpoint to configure; it runs on the client via `npx` (above). Find it through:
+
+- **npm** — [`acf-mcp`](https://www.npmjs.com/package/acf-mcp)
+- **MCP Registry** — `io.github.aiconsulting06000-tech/acf-mcp`
+- **Smithery** — search `acf-mcp`
 
 ## Locales
 

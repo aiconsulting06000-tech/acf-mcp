@@ -7,3 +7,7 @@ dist/
 !.env.example
 coverage/
 .vitest/
+
+# MCPB bundle build artifacts (Smithery stdio release)
+.mcpb-build/
+*.mcpb

@@ -18,6 +18,14 @@ export interface ResourceReadResult {
   contents: { uri: string; mimeType: string; text: string }[];
 }
 
+const GUIDE_REGULATIONS = [
+  "ai-act",
+  "gdpr",
+  "dora",
+  "nis2",
+  "iso-42001",
+] as const;
+
 export async function listResources(
   registry: AcfRegistry,
 ): Promise<ResourceListItem[]> {
@@ -74,6 +82,57 @@ export async function listResources(
       mimeType: "text/markdown",
     });
   }
+
+  /* Guides */
+  const regArticles = await registry.content.loadRegulationArticles();
+  for (const reg of GUIDE_REGULATIONS) {
+    const label = regArticles.regulations[reg]?.label.en ?? reg;
+    items.push({
+      uri: `acf://guide/${reg}`,
+      name: `Regulatory guide — ${label}`,
+      description: `ACF® operational reading of ${label}.`,
+      mimeType: "text/markdown",
+    });
+  }
+
+  /* Whitepaper */
+  items.push({
+    uri: "acf://whitepaper",
+    name: "ACF® Whitepaper",
+    description: "Founding doctrine of the ACF® standard (single document).",
+    mimeType: "text/markdown",
+  });
+
+  /* Manual */
+  const manual = await registry.content.loadManual("fr");
+  items.push({
+    uri: "acf://manual",
+    name: "ACF® Manual (full)",
+    description: `Pedagogical manual — ${manual.parts.length} parts.`,
+    mimeType: "text/markdown",
+  });
+  items.push({
+    uri: "acf://manual/toc",
+    name: "ACF® Manual — table of contents",
+    description: "List of manual parts with page ranges.",
+    mimeType: "application/json",
+  });
+  for (const part of manual.parts) {
+    items.push({
+      uri: `acf://manual/section/${part.part}`,
+      name: `Manual part ${part.part} — ${part.title}`,
+      description: `Manual section (pp. ${part.page_range}).`,
+      mimeType: "text/markdown",
+    });
+  }
+
+  /* Deck */
+  items.push({
+    uri: "acf://deck",
+    name: "ACF® Slide deck",
+    description: "Presentation deck for the ACF® standard.",
+    mimeType: "text/markdown",
+  });
 
   /* Glossary */
   items.push({
@@ -154,6 +213,70 @@ export async function readResource(
     case "meta": {
       return jsonResource(uri, await registry.content.loadMeta());
     }
+    case "guide": {
+      const guide = await registry.content.loadGuide(parsed.id ?? "", locale);
+      return mdResource(
+        uri,
+        docHeader(guide.served_locale, guide.is_fallback) + guide.body,
+      );
+    }
+    case "whitepaper": {
+      const wp = await registry.content.loadWhitepaper(locale);
+      return mdResource(
+        uri,
+        docHeader(wp.served_locale, wp.is_fallback) + wp.body,
+      );
+    }
+    case "whitepaper_toc":
+    case "whitepaper_section": {
+      throw new Error(
+        "Whitepaper is served as a single document in V1.0 (flat PDF extract without section anchors). Use acf://whitepaper.",
+      );
+    }
+    case "manual": {
+      const manual = await registry.content.loadManual(locale);
+      const body = manual.parts
+        .map(
+          (p) =>
+            `## Part ${String(p.part).padStart(2, "0")} — ${p.title} (pp. ${p.page_range})\n\n${p.body}`,
+        )
+        .join("\n\n---\n\n");
+      return mdResource(
+        uri,
+        docHeader(manual.served_locale, manual.is_fallback) + body,
+      );
+    }
+    case "manual_toc": {
+      const manual = await registry.content.loadManual(locale);
+      return jsonResource(uri, {
+        served_locale: manual.served_locale,
+        is_fallback: manual.is_fallback,
+        parts: manual.parts.map((p) => ({
+          part: p.part,
+          title: p.title,
+          page_range: p.page_range,
+          uri: `acf://manual/section/${p.part}`,
+        })),
+      });
+    }
+    case "manual_section": {
+      const manual = await registry.content.loadManual(locale);
+      const n = Number(parsed.id);
+      const part = manual.parts.find((p) => p.part === n);
+      if (!part) throw new Error(`Manual section not found: ${parsed.id}`);
+      return mdResource(
+        uri,
+        docHeader(manual.served_locale, manual.is_fallback) +
+          `## Part ${String(part.part).padStart(2, "0")} — ${part.title} (pp. ${part.page_range})\n\n${part.body}`,
+      );
+    }
+    case "deck": {
+      const deck = await registry.content.loadDeck(locale);
+      return mdResource(
+        uri,
+        docHeader(deck.served_locale, deck.is_fallback) + deck.body,
+      );
+    }
     default:
       throw new Error(`Resource not implemented in V1.0: ${parsed.category}`);
   }
@@ -165,6 +288,22 @@ function jsonResource(uri: string, data: unknown): ResourceReadResult {
       { uri, mimeType: "application/json", text: JSON.stringify(data, null, 2) },
     ],
   };
+}
+
+function mdResource(uri: string, text: string): ResourceReadResult {
+  return {
+    contents: [{ uri, mimeType: "text/markdown", text }],
+  };
+}
+
+function docHeader(servedLocale: string, isFallback: boolean): string {
+  return [
+    "---",
+    `served_locale: ${servedLocale}`,
+    `is_fallback: ${isFallback}`,
+    "---",
+    "",
+  ].join("\n");
 }
 
 function renderFicheMarkdown(fiche: {

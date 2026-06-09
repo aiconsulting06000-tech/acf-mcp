@@ -90,103 +90,41 @@ export interface RegulationArticleOutput {
     fiches: string[];
     operational_note: string;
   };
+  source?: string;
   applicable_date?: string;
 }
 
-/**
- * V1.0 stub: the full text of each regulation article lives in
- * content/guides/<reg>.<locale>.md (Phase 11 fills these). For V1.0 baseline
- * we return a canonical mapping derived from the rules JSON, with
- * placeholder text. The 5 expert guides are content production deferred to
- * the guide-authoring sub-plan.
- */
-const ARTICLE_MAPPINGS: Record<string, Record<string, RegulationArticleOutput>> = {
-  "ai-act": {
-    "9": {
-      regulation: "ai-act",
-      article: "9",
-      title: "Risk management system (high-risk AI systems)",
-      text: "Providers of high-risk AI systems shall establish, implement, document and maintain a risk management system. See Regulation (EU) 2024/1689, Article 9.",
-      mapping: {
-        principles: ["P2", "P4"],
-        dimensions: ["D5", "D6"],
-        fiches: ["ACF-02", "ACF-11"],
-        operational_note:
-          "ACF® operationalises Art. 9 via ACF-02 (criticality matrix) + ACF-11 (risk assessment), bound by P4 (proportional governance).",
-      },
-      applicable_date: "2027-12-02",
-    },
-    "10": {
-      regulation: "ai-act",
-      article: "10",
-      title: "Data and data governance (high-risk AI systems)",
-      text: "Training, validation and testing data sets shall be subject to data governance and management practices appropriate for the intended purpose. See Regulation (EU) 2024/1689, Article 10.",
-      mapping: {
-        principles: ["P2"],
-        dimensions: ["D5"],
-        fiches: ["ACF-05", "ACF-13"],
-        operational_note:
-          "ACF® operationalises Art. 10 via ACF-05 (decision register) + ACF-13 (retention policy).",
-      },
-      applicable_date: "2027-12-02",
-    },
-    "14": {
-      regulation: "ai-act",
-      article: "14",
-      title: "Human oversight (high-risk AI systems)",
-      text: "High-risk AI systems shall be designed and developed so that they can be effectively overseen by natural persons. See Regulation (EU) 2024/1689, Article 14.",
-      mapping: {
-        principles: ["P3"],
-        dimensions: ["D3", "D4"],
-        fiches: ["ACF-07", "ACF-09", "ACF-14"],
-        operational_note:
-          "ACF® operationalises Art. 14 via P3 (ultimate human control), ACF-07 (kill switch), ACF-09 (escalation thresholds), ACF-14 (takeover drills).",
-      },
-      applicable_date: "2027-12-02",
-    },
-  },
-  "gdpr": {
-    "25": {
-      regulation: "gdpr",
-      article: "25",
-      title: "Data protection by design and by default",
-      text: "The controller shall implement appropriate technical and organisational measures to ensure data protection by design and by default. See Regulation (EU) 2016/679, Article 25.",
-      mapping: {
-        principles: ["P2"],
-        dimensions: ["D3", "D5"],
-        fiches: ["ACF-03", "ACF-13"],
-        operational_note:
-          "ACF® operationalises Art. 25 via ACF-03 (constitution forbidding non-purposeful PII access) + ACF-13 (retention policy).",
-      },
-    },
-    "35": {
-      regulation: "gdpr",
-      article: "35",
-      title: "Data protection impact assessment (DPIA)",
-      text: "Where processing is likely to result in a high risk to the rights and freedoms of natural persons, the controller shall carry out a DPIA. See Regulation (EU) 2016/679, Article 35.",
-      mapping: {
-        principles: ["P2"],
-        dimensions: ["D5"],
-        fiches: ["ACF-11"],
-        operational_note:
-          "ACF® operationalises Art. 35 via ACF-11 (risk assessment) feeding the DPIA template.",
-      },
-    },
-  },
-};
-
 export async function handleRegulationArticleTool(
-  _registry: AcfRegistry,
+  registry: AcfRegistry,
   rawInput: unknown,
 ): Promise<RegulationArticleOutput> {
   const input = RegulationArticleInputSchema.parse(rawInput);
-  const reg = ARTICLE_MAPPINGS[input.regulation];
-  if (!reg || !reg[input.article]) {
+  const data = await registry.content.loadRegulationArticles();
+  const reg = data.regulations[input.regulation];
+  const article = reg?.articles[input.article];
+  if (!article) {
+    const available = reg
+      ? Object.keys(reg.articles).join(", ")
+      : "(regulation not found)";
     throw new Error(
-      `Article ${input.regulation} Art. ${input.article} not yet seeded in V1.0 — full expert guides arrive in content-authoring sub-plan.`,
+      `Article ${input.regulation} Art. ${input.article} not found. Available articles for ${input.regulation}: ${available}.`,
     );
   }
-  return reg[input.article]!;
+  const L: "fr" | "en" = input.locale === "fr" ? "fr" : "en";
+  return {
+    regulation: input.regulation,
+    article: input.article,
+    title: article.title[L],
+    text: article.text[L],
+    mapping: {
+      principles: article.mapping.principles,
+      dimensions: article.mapping.dimensions,
+      fiches: article.mapping.fiches,
+      operational_note: article.mapping.operational_note[L],
+    },
+    source: article.source,
+    applicable_date: article.applicable_date,
+  };
 }
 
 /* -------------------- acf.glossary.define -------------------- */

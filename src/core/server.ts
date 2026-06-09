@@ -14,7 +14,7 @@ export interface CreateAcfServerOptions {
 }
 
 export const ACF_MCP_NAME = "acf-mcp";
-export const ACF_MCP_VERSION = "1.0.2";
+export const ACF_MCP_VERSION = "1.0.3";
 
 export async function createAcfServer(
   opts: CreateAcfServerOptions,

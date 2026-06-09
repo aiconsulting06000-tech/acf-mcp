@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.3 — 2026-06-09
+
+Full V1.0 doctrine content + cryptographic integrity. Shipped content grows from 51 to 74 files; the doctrine is now ed25519-signed and independently verifiable.
+
+- **Content**: whitepaper (FR+EN), full manual (FR), deck, and 5 regulator guides — AI Act, GDPR, DORA, NIS2, ISO 42001 (FR+EN) — plus `regulation-articles.json`. `acf.regulation.article` now returns real article text + ACF® mappings (replaces the V1.0 placeholder stub).
+- **Integrity**: `meta.json` carries `doctrine_signature` (ed25519) + `doctrine_public_key`; every REASON footer now exposes `doctrine_signature`. New scripts: `verify-doctrine`, `sign-doctrine`, `keygen:doctrine`. `verify-doctrine` re-checks `content_hash` and signature using the embedded public key alone — no private key required.
+- **Reproducibility**: content hashing is now location-independent (paths hashed relative to root), so the `content_hash` is byte-reproducible across the monorepo and this mirror. `content_hash: sha256:aa8911fb…`.
+- **Archive**: `build:archive` emits a self-verifying permanent bundle (`dist/archive/doctrine-v1.0.json` — 73 files, full content + per-file + aggregate hashes + signature).
+- **Trademark**: "Souveraineté Agentique®" mark applied across content.
+- **Validation**: `validate-content` strengthened (structural checks + negative fixtures). 245 tests.
+
 ## 1.0.2 — 2026-06-08
 
 Public mirror. Code moved from monorepo subfolder to dedicated public repository at https://github.com/aiconsulting06000-tech/acf-mcp. No functional change vs 1.0.1.

@@ -90,6 +90,7 @@ export async function handleAssessAutonomyTool(
     rulesVersion: rulesMeta.rules_version,
     contentHash: registry.meta.content_hash,
     archiveUrl: registry.meta.permanent_archive_url,
+    signature: registry.meta.doctrine_signature,
   });
 
   return {

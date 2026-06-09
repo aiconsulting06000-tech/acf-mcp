@@ -48,6 +48,7 @@ export async function handleAssignControlsTool(
     rulesVersion: rulesMeta.rules_version,
     contentHash: registry.meta.content_hash,
     archiveUrl: registry.meta.permanent_archive_url,
+    signature: registry.meta.doctrine_signature,
   });
 
   const summary = `Control set scoped to ACF® ${input.acf_level} / risk=${input.risk_level} (${recommended.length} recommended controls, ${controls.ddao_controls.length} ACF-canonical controls).`;

@@ -13,11 +13,13 @@ export interface DoctrineFooterInput {
   rulesVersion: string;
   contentHash: string;
   archiveUrl: string;
+  signature?: string | undefined;
 }
 
 export interface DoctrineFooter {
   doctrine_version: string;
   doctrine_hash: string;
+  doctrine_signature?: string;
   doctrine_archive_url: string;
   regulatory_snapshot: string;
   generated_at: string;
@@ -31,6 +33,7 @@ export function buildDoctrineFooter(
   return {
     doctrine_version: `ACF framework v${input.frameworkVersion} / rules ${input.rulesVersion}`,
     doctrine_hash: input.contentHash,
+    ...(input.signature ? { doctrine_signature: input.signature } : {}),
     doctrine_archive_url: input.archiveUrl,
     regulatory_snapshot: REGULATORY_SNAPSHOT,
     generated_at: new Date().toISOString(),

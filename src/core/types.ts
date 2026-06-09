@@ -153,6 +153,7 @@ export const MetaSchema = z.object({
   content_build: z.string(),
   content_hash: z.string().startsWith("sha256:"),
   doctrine_signature: z.string().optional(),
+  doctrine_public_key: z.string().optional(),
   permanent_archive_url: z.string().url(),
   rules_version: z.string(),
   locales: z.array(AcfLocaleSchema),
@@ -173,3 +174,59 @@ export type ResolvedContent =
   | { kind: "glossary_entry"; data: GlossaryEntry }
   | { kind: "glossary_index"; data: GlossaryEntry[] }
   | { kind: "meta"; data: Meta };
+
+/* -------------------- Regulation articles (guides/regulation-articles.json) -------------------- */
+
+export const RegulationArticleMappingSchema = z.object({
+  principles: z.array(z.string()),
+  dimensions: z.array(z.string()),
+  fiches: z.array(z.string()),
+  operational_note: LocalizedStringSchema,
+});
+
+export const RegulationArticleSchema = z.object({
+  title: LocalizedStringSchema,
+  text: LocalizedStringSchema,
+  mapping: RegulationArticleMappingSchema,
+  source: z.string(),
+  applicable_date: z.string().optional(),
+});
+export type RegulationArticle = z.infer<typeof RegulationArticleSchema>;
+
+export const RegulationSchema = z.object({
+  label: LocalizedStringSchema,
+  articles: z.record(z.string(), RegulationArticleSchema),
+});
+
+export const RegulationArticlesFileSchema = z.object({
+  _meta: z.object({
+    schema: z.string(),
+    regulatory_snapshot: z.string(),
+    nature: z.string(),
+    fiche_mapping_caveat: z.string(),
+  }),
+  regulations: z.record(z.string(), RegulationSchema),
+});
+export type RegulationArticlesFile = z.infer<typeof RegulationArticlesFileSchema>;
+
+/* -------------------- Manual / Deck (PDF-extract docs) -------------------- */
+
+export interface ManualPart {
+  part: number;
+  title: string;
+  page_range: string;
+  body: string;
+}
+
+export interface ManualDocument {
+  parts: ManualPart[];
+  served_locale: AcfLocale;
+  is_fallback: boolean;
+}
+
+export interface DocDocument {
+  title: string;
+  body: string;
+  served_locale: AcfLocale;
+  is_fallback: boolean;
+}

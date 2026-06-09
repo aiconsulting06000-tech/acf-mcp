@@ -110,6 +110,43 @@ export async function collectSearchDocs(
     } catch {
       /* no glossary for this locale */
     }
+
+    /* Guides */
+    for (const reg of ["ai-act", "gdpr", "dora", "nis2", "iso-42001"] as const) {
+      try {
+        const guide = await loader.loadGuide(reg, locale);
+        if (guide.is_fallback) continue;
+        docs.push({
+          uri: `acf://guide/${reg}`,
+          title: guide.frontmatter.title,
+          snippet:
+            guide.body.split("\n\n").find((p) => p.trim().length > 60)?.slice(0, 240) ?? "",
+          body: `${guide.frontmatter.title} ${guide.body}`,
+          category: "guide",
+          locale,
+        });
+      } catch {
+        /* guide missing in this locale — skip */
+      }
+    }
+
+    /* Whitepaper */
+    try {
+      const wp = await loader.loadWhitepaper(locale);
+      if (!wp.is_fallback) {
+        docs.push({
+          uri: "acf://whitepaper",
+          title: wp.title,
+          snippet:
+            wp.body.split("\n\n").find((p) => p.trim().length > 60)?.slice(0, 240) ?? "",
+          body: `${wp.title} ${wp.body}`,
+          category: "whitepaper",
+          locale,
+        });
+      }
+    } catch {
+      /* no whitepaper for this locale */
+    }
   }
 
   return docs;

@@ -18,6 +18,25 @@ describe("buildDoctrineFooter", () => {
     expect(out.requires_human_review).toBe(true);
   });
 
+  it("includes doctrine_signature only when a signature is provided", () => {
+    const unsigned = buildDoctrineFooter({
+      frameworkVersion: "1.0",
+      rulesVersion: "2026-06",
+      contentHash: "sha256:abc",
+      archiveUrl: "https://archive.acfstandard.com/doctrine/v1.0/",
+    });
+    expect(unsigned.doctrine_signature).toBeUndefined();
+
+    const signed = buildDoctrineFooter({
+      frameworkVersion: "1.0",
+      rulesVersion: "2026-06",
+      contentHash: "sha256:abc",
+      archiveUrl: "https://archive.acfstandard.com/doctrine/v1.0/",
+      signature: "BASE64SIG==",
+    });
+    expect(signed.doctrine_signature).toBe("BASE64SIG==");
+  });
+
   it("REGULATORY_SNAPSHOT names the in-scope corpus", () => {
     expect(REGULATORY_SNAPSHOT).toMatch(/AI Act/);
     expect(REGULATORY_SNAPSHOT).toMatch(/GDPR/);

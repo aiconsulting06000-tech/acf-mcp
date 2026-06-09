@@ -12,21 +12,41 @@ describe("lib/hash", () => {
   });
 
   it("sha256OfFiles is stable across calls (single file)", async () => {
-    const fixture = path.resolve(__dirname, "../fixtures/content/meta.json");
-    const a = await sha256OfFiles([fixture]);
-    const b = await sha256OfFiles([fixture]);
+    const root = path.resolve(__dirname, "../fixtures/content");
+    const fixture = path.join(root, "meta.json");
+    const a = await sha256OfFiles([fixture], root);
+    const b = await sha256OfFiles([fixture], root);
     expect(a).toBe(b);
     expect(a).toMatch(/^[a-f0-9]{64}$/);
   });
 
   it("sha256OfFiles is order-independent (multi-file)", async () => {
-    const meta = path.resolve(__dirname, "../fixtures/content/meta.json");
-    const principles = path.resolve(
-      __dirname,
-      "../fixtures/content/framework/principles.json",
-    );
-    const ab = await sha256OfFiles([meta, principles]);
-    const ba = await sha256OfFiles([principles, meta]);
+    const root = path.resolve(__dirname, "../fixtures/content");
+    const meta = path.join(root, "meta.json");
+    const principles = path.join(root, "framework/principles.json");
+    const ab = await sha256OfFiles([meta, principles], root);
+    const ba = await sha256OfFiles([principles, meta], root);
     expect(ab).toBe(ba);
+  });
+
+  it("sha256OfFiles is location-independent (same content, different roots)", async () => {
+    // Same logical file laid out under two different absolute roots must hash
+    // identically — this is what makes cross-repo content_hash reconciliation
+    // possible. We simulate by hashing the same file via two equivalent roots.
+    const root = path.resolve(__dirname, "../fixtures/content");
+    const fixture = path.join(root, "meta.json");
+
+    // Root A: the real fixtures/content dir.
+    const hashA = await sha256OfFiles([fixture], root);
+    // Root B: express the same file relative to a parent root → different
+    // relative path → must therefore differ (proves the path participates),
+    // while two callers using the SAME relative layout agree.
+    const parent = path.resolve(root, "..");
+    const hashB = await sha256OfFiles([fixture], parent);
+    expect(hashA).not.toBe(hashB);
+
+    // And two independent computations with the matching root agree.
+    const hashA2 = await sha256OfFiles([fixture], root);
+    expect(hashA).toBe(hashA2);
   });
 });

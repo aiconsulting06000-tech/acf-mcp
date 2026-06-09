@@ -1,7 +1,7 @@
 {
   "framework_version": "1.0",
-  "content_build": "2026-06-08T08:59:41.398Z",
-  "content_hash": "sha256:f79fac12251e850421f4c2da342ae450053cb52414eb7f249bfb2e1e93e25f10",
+  "content_build": "2026-06-09T11:26:28.510Z",
+  "content_hash": "sha256:aa8911fb0a1a4c6d18fa56a7a62911c41c4006b66a08c256635bd554b176cce1",
   "permanent_archive_url": "https://archive.acfstandard.com/doctrine/v1.0/",
   "rules_version": "2026-06",
   "locales": [
@@ -19,5 +19,7 @@
     "zh",
     "ko"
   ],
-  "fallback_locale": "en"
+  "fallback_locale": "en",
+  "doctrine_signature": "ed25519:wPtRuWgavMK55U8WU/6JmACku9Kvn14mphbZfM1O6JTM8aJF7BXn7Ho+fNiDhaLupsF79UN95bHv1CnEY9NTBw==",
+  "doctrine_public_key": "MCowBQYDK2VwAyEAILiqaUR9IHi3gS5TfvNDPEyRkxR1mAxE6a+zkJHPRss="
 }

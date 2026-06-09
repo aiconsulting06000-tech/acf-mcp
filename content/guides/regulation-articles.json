@@ -1,0 +1,500 @@
+{
+  "_meta": {
+    "schema": "acf-regulation-articles/1.0",
+    "regulatory_snapshot": "AI Act (Reg. (EU) 2024/1689) incl. Digital Omnibus deferrals · GDPR (Reg. (EU) 2016/679) · DORA (Reg. (EU) 2022/2554) · NIS2 (Dir. (EU) 2022/2555) · ISO/IEC 42001:2023 — as interpreted on 2026-06-07",
+    "nature": "ACF governance mapping. The `text` field is a faithful short summary of each official provision (not its verbatim legal text); always read the cited instrument. The `mapping` and `operational_note` are ACF doctrine. Preliminary qualification, not legal advice — requires_human_review.",
+    "fiche_mapping_caveat": "Fiche / principle / dimension references reflect ACF v1.0 doctrine."
+  },
+  "regulations": {
+    "ai-act": {
+      "label": {
+        "fr": "AI Act — Règlement (UE) 2024/1689",
+        "en": "AI Act — Regulation (EU) 2024/1689"
+      },
+      "articles": {
+        "9": {
+          "title": {
+            "fr": "Système de gestion des risques (IA à haut risque)",
+            "en": "Risk management system (high-risk AI)"
+          },
+          "text": {
+            "fr": "Les fournisseurs de systèmes d'IA à haut risque établissent, mettent en œuvre, documentent et maintiennent un système de gestion des risques itératif tout au long du cycle de vie. Cf. Règlement (UE) 2024/1689, art. 9.",
+            "en": "Providers of high-risk AI systems shall establish, implement, document and maintain a risk management system running iteratively across the lifecycle. See Regulation (EU) 2024/1689, Article 9."
+          },
+          "mapping": {
+            "principles": ["P2", "P4"],
+            "dimensions": ["D5", "D6"],
+            "fiches": ["ACF-02", "ACF-11"],
+            "operational_note": {
+              "fr": "ACF opérationnalise l'art. 9 via ACF-02 (matrice de criticité) + ACF-11 (évaluation du risque), borné par P4 (gouvernance proportionnelle).",
+              "en": "ACF operationalises Art. 9 via ACF-02 (criticality matrix) + ACF-11 (risk assessment), bounded by P4 (proportional governance)."
+            }
+          },
+          "source": "Regulation (EU) 2024/1689, Article 9",
+          "applicable_date": "2027-12-02"
+        },
+        "10": {
+          "title": {
+            "fr": "Données et gouvernance des données (IA à haut risque)",
+            "en": "Data and data governance (high-risk AI)"
+          },
+          "text": {
+            "fr": "Les jeux de données d'entraînement, de validation et de test sont soumis à des pratiques de gouvernance appropriées à la finalité visée (pertinence, représentativité, biais). Cf. Règlement (UE) 2024/1689, art. 10.",
+            "en": "Training, validation and testing data sets shall be subject to data governance practices appropriate to the intended purpose (relevance, representativeness, bias). See Regulation (EU) 2024/1689, Article 10."
+          },
+          "mapping": {
+            "principles": ["P2"],
+            "dimensions": ["D5"],
+            "fiches": ["ACF-05", "ACF-13"],
+            "operational_note": {
+              "fr": "ACF opérationnalise l'art. 10 via ACF-05 (registre des décisions) + ACF-13 (politique de rétention).",
+              "en": "ACF operationalises Art. 10 via ACF-05 (decision register) + ACF-13 (retention policy)."
+            }
+          },
+          "source": "Regulation (EU) 2024/1689, Article 10",
+          "applicable_date": "2027-12-02"
+        },
+        "12": {
+          "title": {
+            "fr": "Enregistrement (journalisation)",
+            "en": "Record-keeping (logging)"
+          },
+          "text": {
+            "fr": "Les systèmes d'IA à haut risque permettent l'enregistrement automatique des événements (logs) sur leur durée de vie, pour assurer la traçabilité du fonctionnement. Cf. Règlement (UE) 2024/1689, art. 12.",
+            "en": "High-risk AI systems shall technically allow for the automatic recording of events (logs) over their lifetime, ensuring traceability of functioning. See Regulation (EU) 2024/1689, Article 12."
+          },
+          "mapping": {
+            "principles": ["P2"],
+            "dimensions": ["D5", "D6"],
+            "fiches": ["ACF-05", "ACF-10"],
+            "operational_note": {
+              "fr": "ACF opérationnalise l'art. 12 via ACF-05 (registre horodaté des décisions) + ACF-10 (piste d'audit reconstituable), expression directe de P2.",
+              "en": "ACF operationalises Art. 12 via ACF-05 (time-stamped decision register) + ACF-10 (reconstructible audit trail), a direct expression of P2."
+            }
+          },
+          "source": "Regulation (EU) 2024/1689, Article 12",
+          "applicable_date": "2027-12-02"
+        },
+        "13": {
+          "title": {
+            "fr": "Transparence et information des déployeurs",
+            "en": "Transparency and provision of information to deployers"
+          },
+          "text": {
+            "fr": "Les systèmes d'IA à haut risque sont conçus pour être suffisamment transparents et accompagnés d'une notice d'utilisation permettant aux déployeurs d'interpréter et d'utiliser correctement les sorties. Cf. Règlement (UE) 2024/1689, art. 13.",
+            "en": "High-risk AI systems shall be designed to be sufficiently transparent and accompanied by instructions for use enabling deployers to interpret and use the output correctly. See Regulation (EU) 2024/1689, Article 13."
+          },
+          "mapping": {
+            "principles": ["P3"],
+            "dimensions": ["D3", "D4"],
+            "fiches": ["ACF-04", "ACF-12"],
+            "operational_note": {
+              "fr": "ACF opérationnalise l'art. 13 via ACF-04 (fiche agent documentée) + ACF-12 (mandat écrit précisant périmètre et limites).",
+              "en": "ACF operationalises Art. 13 via ACF-04 (documented agent card) + ACF-12 (written mandate stating perimeter and limits)."
+            }
+          },
+          "source": "Regulation (EU) 2024/1689, Article 13",
+          "applicable_date": "2027-12-02"
+        },
+        "14": {
+          "title": {
+            "fr": "Contrôle humain (IA à haut risque)",
+            "en": "Human oversight (high-risk AI)"
+          },
+          "text": {
+            "fr": "Les systèmes d'IA à haut risque sont conçus pour pouvoir être effectivement supervisés par des personnes physiques pendant leur utilisation, y compris par des mesures d'arrêt. Cf. Règlement (UE) 2024/1689, art. 14.",
+            "en": "High-risk AI systems shall be designed so they can be effectively overseen by natural persons during use, including through stop mechanisms. See Regulation (EU) 2024/1689, Article 14."
+          },
+          "mapping": {
+            "principles": ["P3"],
+            "dimensions": ["D3", "D4"],
+            "fiches": ["ACF-07", "ACF-09", "ACF-14"],
+            "operational_note": {
+              "fr": "ACF opérationnalise l'art. 14 via P3 (contrôle humain ultime), ACF-07 (kill switch), ACF-09 (seuils d'escalade), ACF-14 (drills de reprise humaine).",
+              "en": "ACF operationalises Art. 14 via P3 (ultimate human control), ACF-07 (kill switch), ACF-09 (escalation thresholds), ACF-14 (human-takeover drills)."
+            }
+          },
+          "source": "Regulation (EU) 2024/1689, Article 14",
+          "applicable_date": "2027-12-02"
+        }
+      }
+    },
+    "gdpr": {
+      "label": {
+        "fr": "RGPD — Règlement (UE) 2016/679",
+        "en": "GDPR — Regulation (EU) 2016/679"
+      },
+      "articles": {
+        "5": {
+          "title": {
+            "fr": "Principes relatifs au traitement",
+            "en": "Principles relating to processing"
+          },
+          "text": {
+            "fr": "Le traitement des données personnelles obéit aux principes de licéité, limitation des finalités, minimisation, exactitude, limitation de conservation, intégrité/confidentialité et responsabilité (accountability). Cf. Règlement (UE) 2016/679, art. 5.",
+            "en": "Processing of personal data must follow the principles of lawfulness, purpose limitation, data minimisation, accuracy, storage limitation, integrity/confidentiality and accountability. See Regulation (EU) 2016/679, Article 5."
+          },
+          "mapping": {
+            "principles": ["P1", "P2"],
+            "dimensions": ["D5"],
+            "fiches": ["ACF-03", "ACF-13"],
+            "operational_note": {
+              "fr": "ACF opérationnalise l'art. 5 via ACF-03 (constitution interdisant les accès PII hors finalité) + ACF-13 (limitation de conservation).",
+              "en": "ACF operationalises Art. 5 via ACF-03 (constitution forbidding non-purposeful PII access) + ACF-13 (storage limitation)."
+            }
+          },
+          "source": "Regulation (EU) 2016/679, Article 5"
+        },
+        "22": {
+          "title": {
+            "fr": "Décision individuelle automatisée",
+            "en": "Automated individual decision-making"
+          },
+          "text": {
+            "fr": "La personne concernée a le droit de ne pas faire l'objet d'une décision fondée exclusivement sur un traitement automatisé produisant des effets juridiques ou l'affectant de manière significative, sauf exceptions encadrées (consentement, contrat, loi) avec garanties. Cf. Règlement (UE) 2016/679, art. 22.",
+            "en": "The data subject has the right not to be subject to a decision based solely on automated processing producing legal or similarly significant effects, save framed exceptions (consent, contract, law) with safeguards. See Regulation (EU) 2016/679, Article 22."
+          },
+          "mapping": {
+            "principles": ["P1", "P3"],
+            "dimensions": ["D4", "D5"],
+            "fiches": ["ACF-09", "ACF-12"],
+            "operational_note": {
+              "fr": "Pilier direct du contrôle humain : ACF borne l'autonomie (mandat ACF-12) et impose la remontée humaine (ACF-09) dès qu'une décision agentique produit un effet significatif sur une personne.",
+              "en": "A direct human-control pillar: ACF bounds autonomy (ACF-12 mandate) and forces human escalation (ACF-09) whenever an agentic decision produces a significant effect on a person."
+            }
+          },
+          "source": "Regulation (EU) 2016/679, Article 22"
+        },
+        "25": {
+          "title": {
+            "fr": "Protection des données dès la conception et par défaut",
+            "en": "Data protection by design and by default"
+          },
+          "text": {
+            "fr": "Le responsable du traitement met en œuvre des mesures techniques et organisationnelles appropriées pour garantir la protection des données dès la conception et par défaut. Cf. Règlement (UE) 2016/679, art. 25.",
+            "en": "The controller shall implement appropriate technical and organisational measures to ensure data protection by design and by default. See Regulation (EU) 2016/679, Article 25."
+          },
+          "mapping": {
+            "principles": ["P2"],
+            "dimensions": ["D3", "D5"],
+            "fiches": ["ACF-03", "ACF-13"],
+            "operational_note": {
+              "fr": "ACF opérationnalise l'art. 25 via ACF-03 (constitution) + ACF-13 (politique de rétention).",
+              "en": "ACF operationalises Art. 25 via ACF-03 (constitution) + ACF-13 (retention policy)."
+            }
+          },
+          "source": "Regulation (EU) 2016/679, Article 25"
+        },
+        "30": {
+          "title": {
+            "fr": "Registre des activités de traitement",
+            "en": "Records of processing activities"
+          },
+          "text": {
+            "fr": "Le responsable et le sous-traitant tiennent un registre des activités de traitement relevant de leur responsabilité. Cf. Règlement (UE) 2016/679, art. 30.",
+            "en": "The controller and processor shall maintain a record of processing activities under their responsibility. See Regulation (EU) 2016/679, Article 30."
+          },
+          "mapping": {
+            "principles": ["P2"],
+            "dimensions": ["D5", "D6"],
+            "fiches": ["ACF-05", "ACF-10"],
+            "operational_note": {
+              "fr": "Le registre des décisions ACF-05 alimente et recoupe le registre RGPD art. 30 pour les traitements agentiques.",
+              "en": "The ACF-05 decision register feeds and cross-checks the GDPR Art. 30 record for agentic processing."
+            }
+          },
+          "source": "Regulation (EU) 2016/679, Article 30"
+        },
+        "35": {
+          "title": {
+            "fr": "Analyse d'impact relative à la protection des données (AIPD/DPIA)",
+            "en": "Data protection impact assessment (DPIA)"
+          },
+          "text": {
+            "fr": "Lorsqu'un traitement est susceptible d'engendrer un risque élevé pour les droits et libertés, le responsable effectue une analyse d'impact (AIPD). Cf. Règlement (UE) 2016/679, art. 35.",
+            "en": "Where processing is likely to result in a high risk to the rights and freedoms of natural persons, the controller shall carry out a DPIA. See Regulation (EU) 2016/679, Article 35."
+          },
+          "mapping": {
+            "principles": ["P2"],
+            "dimensions": ["D5"],
+            "fiches": ["ACF-11"],
+            "operational_note": {
+              "fr": "ACF-11 (évaluation du risque) alimente le gabarit AIPD/DPIA.",
+              "en": "ACF-11 (risk assessment) feeds the DPIA template."
+            }
+          },
+          "source": "Regulation (EU) 2016/679, Article 35"
+        }
+      }
+    },
+    "dora": {
+      "label": {
+        "fr": "DORA — Règlement (UE) 2022/2554 (applicable depuis le 2025-01-17)",
+        "en": "DORA — Regulation (EU) 2022/2554 (applicable since 2025-01-17)"
+      },
+      "articles": {
+        "5": {
+          "title": {
+            "fr": "Gouvernance et organisation (cadre de gestion du risque TIC)",
+            "en": "Governance and organisation (ICT risk management)"
+          },
+          "text": {
+            "fr": "L'organe de direction de l'entité financière définit, approuve et supervise le cadre de gestion du risque lié aux TIC et en porte la responsabilité finale. Cf. Règlement (UE) 2022/2554, art. 5.",
+            "en": "The management body of the financial entity defines, approves and oversees the ICT risk management framework and bears ultimate responsibility for it. See Regulation (EU) 2022/2554, Article 5."
+          },
+          "mapping": {
+            "principles": ["P1"],
+            "dimensions": ["D1", "D4"],
+            "fiches": ["ACF-00", "ACF-12"],
+            "operational_note": {
+              "fr": "Convergent avec P1 : la responsabilité ultime reste à l'organe de direction. ACF rattache chaque agent N2+ à un DDAO et un mandat (ACF-12).",
+              "en": "Converges with P1: ultimate responsibility stays with the management body. ACF attaches every N2+ agent to a DDAO and a mandate (ACF-12)."
+            }
+          },
+          "source": "Regulation (EU) 2022/2554, Article 5",
+          "applicable_date": "2025-01-17"
+        },
+        "6": {
+          "title": {
+            "fr": "Cadre de gestion du risque lié aux TIC",
+            "en": "ICT risk management framework"
+          },
+          "text": {
+            "fr": "L'entité financière dispose d'un cadre solide, complet et documenté de gestion du risque TIC, intégré à sa gestion globale des risques. Cf. Règlement (UE) 2022/2554, art. 6.",
+            "en": "The financial entity shall have a sound, comprehensive and documented ICT risk management framework, integrated into its overall risk management. See Regulation (EU) 2022/2554, Article 6."
+          },
+          "mapping": {
+            "principles": ["P4"],
+            "dimensions": ["D5", "D6"],
+            "fiches": ["ACF-02", "ACF-11"],
+            "operational_note": {
+              "fr": "ACF-02/ACF-11 fournissent la composante « risque agentique » du cadre TIC ; P4 calibre l'intensité du contrôle.",
+              "en": "ACF-02/ACF-11 provide the 'agentic risk' component of the ICT framework; P4 calibrates control intensity."
+            }
+          },
+          "source": "Regulation (EU) 2022/2554, Article 6",
+          "applicable_date": "2025-01-17"
+        },
+        "11": {
+          "title": {
+            "fr": "Réponse et rétablissement (continuité TIC)",
+            "en": "Response and recovery (ICT business continuity)"
+          },
+          "text": {
+            "fr": "L'entité met en place une politique de continuité d'activité TIC et des plans de réponse et de rétablissement testés régulièrement. Cf. Règlement (UE) 2022/2554, art. 11.",
+            "en": "The entity shall put in place an ICT business continuity policy and response and recovery plans, tested regularly. See Regulation (EU) 2022/2554, Article 11."
+          },
+          "mapping": {
+            "principles": ["P3"],
+            "dimensions": ["D3", "D6"],
+            "fiches": ["ACF-07", "ACF-14"],
+            "operational_note": {
+              "fr": "Le kill switch (ACF-07) et les drills de reprise (ACF-14) sont la déclinaison agentique des plans de réponse/rétablissement.",
+              "en": "The kill switch (ACF-07) and takeover drills (ACF-14) are the agentic instantiation of response/recovery plans."
+            }
+          },
+          "source": "Regulation (EU) 2022/2554, Article 11",
+          "applicable_date": "2025-01-17"
+        },
+        "17": {
+          "title": {
+            "fr": "Processus de gestion des incidents liés aux TIC",
+            "en": "ICT-related incident management process"
+          },
+          "text": {
+            "fr": "L'entité définit, établit et met en œuvre un processus de gestion des incidents TIC pour détecter, gérer et notifier les incidents. Cf. Règlement (UE) 2022/2554, art. 17.",
+            "en": "The entity shall define, establish and implement an ICT-related incident management process to detect, manage and notify incidents. See Regulation (EU) 2022/2554, Article 17."
+          },
+          "mapping": {
+            "principles": ["P2"],
+            "dimensions": ["D6"],
+            "fiches": ["ACF-05", "ACF-10"],
+            "operational_note": {
+              "fr": "Le registre des décisions (ACF-05) et la piste d'audit (ACF-10) fournissent les éléments de détection et de notification d'incident agentique.",
+              "en": "The decision register (ACF-05) and audit trail (ACF-10) provide the agentic-incident detection and notification evidence."
+            }
+          },
+          "source": "Regulation (EU) 2022/2554, Article 17",
+          "applicable_date": "2025-01-17"
+        },
+        "28": {
+          "title": {
+            "fr": "Gestion du risque lié aux prestataires tiers de services TIC",
+            "en": "Management of ICT third-party risk"
+          },
+          "text": {
+            "fr": "L'entité gère le risque lié aux prestataires tiers de services TIC dans le cadre de sa gestion du risque TIC, avec des dispositions contractuelles clés. Cf. Règlement (UE) 2022/2554, art. 28.",
+            "en": "The entity shall manage ICT third-party risk as part of its ICT risk management, with key contractual provisions. See Regulation (EU) 2022/2554, Article 28."
+          },
+          "mapping": {
+            "principles": ["P1", "P4"],
+            "dimensions": ["D5"],
+            "fiches": ["ACF-15"],
+            "operational_note": {
+              "fr": "Lorsque l'agent s'appuie sur un modèle ou service tiers, ACF-15 documente la dépendance et la responsabilité résiduelle (P1).",
+              "en": "Where the agent relies on a third-party model or service, ACF-15 documents the dependency and residual accountability (P1)."
+            }
+          },
+          "source": "Regulation (EU) 2022/2554, Article 28",
+          "applicable_date": "2025-01-17"
+        }
+      }
+    },
+    "nis2": {
+      "label": {
+        "fr": "NIS2 — Directive (UE) 2022/2555 (transposition nationale ; échéance 2024-10-17)",
+        "en": "NIS2 — Directive (EU) 2022/2555 (national transposition; deadline 2024-10-17)"
+      },
+      "articles": {
+        "20": {
+          "title": {
+            "fr": "Gouvernance — responsabilité des organes de direction",
+            "en": "Governance — management bodies' responsibility"
+          },
+          "text": {
+            "fr": "Les organes de direction des entités essentielles et importantes approuvent les mesures de gestion des risques de cybersécurité, en supervisent la mise en œuvre et suivent une formation. Cf. Directive (UE) 2022/2555, art. 20 (telle que transposée).",
+            "en": "Management bodies of essential and important entities shall approve cybersecurity risk-management measures, oversee their implementation, and follow training. See Directive (EU) 2022/2555, Article 20 (as transposed)."
+          },
+          "mapping": {
+            "principles": ["P1"],
+            "dimensions": ["D1", "D4"],
+            "fiches": ["ACF-00", "ACF-12"],
+            "operational_note": {
+              "fr": "Aligne avec P1 et la dimension D4 : responsabilité explicite des dirigeants ; ACF-12 (mandat) trace l'approbation et la supervision côté agents.",
+              "en": "Aligns with P1 and dimension D4: explicit management accountability; ACF-12 (mandate) records approval and oversight on the agent side."
+            }
+          },
+          "source": "Directive (EU) 2022/2555, Article 20 (as transposed into national law)"
+        },
+        "21": {
+          "title": {
+            "fr": "Mesures de gestion des risques de cybersécurité",
+            "en": "Cybersecurity risk-management measures"
+          },
+          "text": {
+            "fr": "Les entités prennent des mesures techniques, opérationnelles et organisationnelles appropriées et proportionnées pour gérer les risques pesant sur leurs réseaux et systèmes d'information (approche tous risques). Cf. Directive (UE) 2022/2555, art. 21.",
+            "en": "Entities shall take appropriate and proportionate technical, operational and organisational measures to manage risks to their network and information systems (all-hazards approach). See Directive (EU) 2022/2555, Article 21."
+          },
+          "mapping": {
+            "principles": ["P4"],
+            "dimensions": ["D3", "D5"],
+            "fiches": ["ACF-02", "ACF-11"],
+            "operational_note": {
+              "fr": "P4 (proportionnalité) fait écho au critère « approprié et proportionné » ; ACF-02/ACF-11 dimensionnent les mesures selon la criticité de l'agent.",
+              "en": "P4 (proportionality) echoes the 'appropriate and proportionate' test; ACF-02/ACF-11 size the measures to the agent's criticality."
+            }
+          },
+          "source": "Directive (EU) 2022/2555, Article 21"
+        },
+        "23": {
+          "title": {
+            "fr": "Obligations de notification d'incidents",
+            "en": "Incident reporting obligations"
+          },
+          "text": {
+            "fr": "Les entités notifient sans retard injustifié les incidents importants à leur CSIRT/autorité compétente (alerte précoce, notification, rapport final) selon les délais prévus. Cf. Directive (UE) 2022/2555, art. 23.",
+            "en": "Entities shall notify significant incidents to their CSIRT/competent authority without undue delay (early warning, notification, final report) within the set deadlines. See Directive (EU) 2022/2555, Article 23."
+          },
+          "mapping": {
+            "principles": ["P2"],
+            "dimensions": ["D6"],
+            "fiches": ["ACF-05", "ACF-10"],
+            "operational_note": {
+              "fr": "La piste d'audit reconstituable (P2, ACF-05/ACF-10) fournit la matière factuelle des notifications d'incident dans les délais.",
+              "en": "The reconstructible audit trail (P2, ACF-05/ACF-10) supplies the factual basis for timely incident notifications."
+            }
+          },
+          "source": "Directive (EU) 2022/2555, Article 23"
+        }
+      }
+    },
+    "iso-42001": {
+      "label": {
+        "fr": "ISO/IEC 42001:2023 — Système de management de l'IA (SMIA)",
+        "en": "ISO/IEC 42001:2023 — AI management system (AIMS)"
+      },
+      "articles": {
+        "6": {
+          "title": {
+            "fr": "Planification — risques, opportunités et évaluation d'impact IA",
+            "en": "Planning — risks, opportunities and AI impact assessment"
+          },
+          "text": {
+            "fr": "L'organisation planifie le SMIA en traitant les risques et opportunités, en réalisant des évaluations de risque IA et des évaluations d'impact du système d'IA, et en fixant des objectifs. Cf. ISO/IEC 42001:2023, clause 6.",
+            "en": "The organisation shall plan the AIMS by addressing risks and opportunities, conducting AI risk assessments and AI system impact assessments, and setting objectives. See ISO/IEC 42001:2023, clause 6."
+          },
+          "mapping": {
+            "principles": ["P4"],
+            "dimensions": ["D5"],
+            "fiches": ["ACF-02", "ACF-11"],
+            "operational_note": {
+              "fr": "ACF-02 (criticité) + ACF-11 (risque) constituent l'évaluation de risque/impact IA exigée par la clause 6.",
+              "en": "ACF-02 (criticality) + ACF-11 (risk) constitute the AI risk/impact assessment required by clause 6."
+            }
+          },
+          "source": "ISO/IEC 42001:2023, clause 6"
+        },
+        "8": {
+          "title": {
+            "fr": "Fonctionnement (maîtrise opérationnelle)",
+            "en": "Operation (operational controls)"
+          },
+          "text": {
+            "fr": "L'organisation planifie, met en œuvre et maîtrise les processus nécessaires pour satisfaire aux exigences et mettre en œuvre les mesures de traitement, y compris la maîtrise des changements. Cf. ISO/IEC 42001:2023, clause 8.",
+            "en": "The organisation shall plan, implement and control the processes needed to meet requirements and implement treatment actions, including change control. See ISO/IEC 42001:2023, clause 8."
+          },
+          "mapping": {
+            "principles": ["P3"],
+            "dimensions": ["D3"],
+            "fiches": ["ACF-07", "ACF-12"],
+            "operational_note": {
+              "fr": "La maîtrise opérationnelle de la clause 8 se traduit, pour un agent, par le mandat (ACF-12) et le kill switch (ACF-07).",
+              "en": "Clause 8 operational control maps, for an agent, to the mandate (ACF-12) and the kill switch (ACF-07)."
+            }
+          },
+          "source": "ISO/IEC 42001:2023, clause 8"
+        },
+        "9": {
+          "title": {
+            "fr": "Évaluation des performances",
+            "en": "Performance evaluation"
+          },
+          "text": {
+            "fr": "L'organisation surveille, mesure, analyse et évalue le SMIA, réalise des audits internes et procède à une revue de direction. Cf. ISO/IEC 42001:2023, clause 9.",
+            "en": "The organisation shall monitor, measure, analyse and evaluate the AIMS, conduct internal audits and a management review. See ISO/IEC 42001:2023, clause 9."
+          },
+          "mapping": {
+            "principles": ["P2"],
+            "dimensions": ["D6"],
+            "fiches": ["ACF-10", "ACF-16"],
+            "operational_note": {
+              "fr": "L'audit interne et la revue de la clause 9 s'appuient sur la piste d'audit (ACF-10) et la boucle d'amélioration (ACF-16).",
+              "en": "The clause 9 internal audit and review draw on the audit trail (ACF-10) and the improvement loop (ACF-16)."
+            }
+          },
+          "source": "ISO/IEC 42001:2023, clause 9"
+        },
+        "A": {
+          "title": {
+            "fr": "Annexe A — mesures de référence (contrôles)",
+            "en": "Annex A — reference controls"
+          },
+          "text": {
+            "fr": "L'Annexe A fournit un ensemble de mesures de référence (objectifs et contrôles) relatives à la gouvernance, aux ressources, au cycle de vie du système d'IA, aux données et aux parties intéressées. Cf. ISO/IEC 42001:2023, Annexe A.",
+            "en": "Annex A provides a set of reference controls (objectives and controls) covering governance, resources, AI system lifecycle, data and interested parties. See ISO/IEC 42001:2023, Annex A."
+          },
+          "mapping": {
+            "principles": ["P1", "P4"],
+            "dimensions": ["D2", "D4"],
+            "fiches": ["ACF-12", "ACF-15"],
+            "operational_note": {
+              "fr": "ACF fournit une déclinaison opérationnelle agentique des contrôles d'Annexe A (rôles DDAO, mandat, traçabilité).",
+              "en": "ACF provides an agentic operational instantiation of Annex A controls (DDAO roles, mandate, traceability)."
+            }
+          },
+          "source": "ISO/IEC 42001:2023, Annex A"
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
@@ -10,16 +10,21 @@ import {
   DdaoSchema,
   Dimension,
   DimensionSchema,
+  DocDocument,
   FicheDocument,
   FicheFrontmatterSchema,
   GlossaryEntry,
   GlossaryEntrySchema,
   GuideDocument,
   GuideFrontmatterSchema,
+  ManualDocument,
+  ManualPart,
   Meta,
   MetaSchema,
   Principle,
   PrincipleSchema,
+  RegulationArticlesFile,
+  RegulationArticlesFileSchema,
 } from "./types";
 import { fallbackChain } from "./locale";
 
@@ -30,6 +35,7 @@ export interface ContentLoaderOptions {
 export class ContentLoader {
   private readonly root: string;
   private metaCache: Meta | null = null;
+  private regulationArticlesCache: RegulationArticlesFile | null = null;
 
   constructor(opts: ContentLoaderOptions) {
     this.root = opts.contentRoot;
@@ -183,28 +189,107 @@ export class ContentLoader {
   /* -------------------- Whitepaper -------------------- */
 
   /**
-   * Load the whitepaper raw markdown body with locale fallback chain.
+   * Load the whitepaper as a single document with locale fallback chain.
    *
-   * Returns the file contents AS-IS. If the file contains a YAML frontmatter
-   * block, that block is included verbatim in `body` (this method does NOT
-   * strip it). The Phase 5 whitepaper section parser is responsible for
-   * walking H1/H2 and discarding any frontmatter prefix.
+   * V1.0 reality: the whitepaper is a flat PDF text-layer extract with no
+   * markdown headings, so it is served as one document (no section anchors).
+   * Frontmatter (if any) is stripped via gray-matter; the `title` is taken
+   * from frontmatter when present, else a generic fallback.
    */
-  async loadWhitepaperRaw(locale: AcfLocale): Promise<{
-    body: string;
-    served_locale: AcfLocale;
-    is_fallback: boolean;
-  }> {
+  async loadWhitepaper(locale: AcfLocale): Promise<DocDocument> {
     for (const candidate of fallbackChain(locale)) {
       const file = path.join(this.root, "whitepaper", `${candidate}.md`);
       if (!existsSync(file)) continue;
-      const body = await readFile(file, "utf8");
+      const raw = await readFile(file, "utf8");
+      const parsed = matter(raw);
+      const title =
+        (typeof parsed.data.title === "string" && parsed.data.title.trim()) ||
+        "ACF Whitepaper";
       return {
-        body,
+        title,
+        body: parsed.content,
         served_locale: candidate,
         is_fallback: candidate !== locale,
       };
     }
     throw new Error(`Whitepaper not found in any locale chain for ${locale}`);
+  }
+
+  /* -------------------- Manual -------------------- */
+
+  /**
+   * Load the pedagogical manual with locale fallback chain.
+   *
+   * The manual has reliable structure via its `part-NN.md` files (each carries
+   * `part`, `title`, `page_range` frontmatter). Parts are returned sorted by
+   * the numeric `part` field.
+   */
+  async loadManual(locale: AcfLocale): Promise<ManualDocument> {
+    for (const candidate of fallbackChain(locale)) {
+      const dir = path.join(this.root, "manual", candidate);
+      if (!existsSync(dir)) continue;
+      const files = (await readdir(dir)).filter((f) =>
+        /^part-\d+\.md$/.test(f),
+      );
+      if (files.length === 0) continue;
+      const parts: ManualPart[] = [];
+      for (const f of files) {
+        const raw = await readFile(path.join(dir, f), "utf8");
+        const parsed = matter(raw);
+        parts.push({
+          part: Number(parsed.data.part),
+          title: String(parsed.data.title ?? ""),
+          page_range: String(parsed.data.page_range ?? ""),
+          body: parsed.content,
+        });
+      }
+      parts.sort((a, b) => a.part - b.part);
+      return {
+        parts,
+        served_locale: candidate,
+        is_fallback: candidate !== locale,
+      };
+    }
+    throw new Error(`Manual not found in any locale chain for ${locale}`);
+  }
+
+  /* -------------------- Deck -------------------- */
+
+  /**
+   * Load the slide deck as a single document with locale fallback chain.
+   *
+   * Like the whitepaper, the deck is a flat extract served as one document.
+   */
+  async loadDeck(locale: AcfLocale): Promise<DocDocument> {
+    for (const candidate of fallbackChain(locale)) {
+      const file = path.join(this.root, "deck", `${candidate}.md`);
+      if (!existsSync(file)) continue;
+      const raw = await readFile(file, "utf8");
+      const parsed = matter(raw);
+      const title =
+        (typeof parsed.data.title === "string" && parsed.data.title.trim()) ||
+        "ACF Deck";
+      return {
+        title,
+        body: parsed.content,
+        served_locale: candidate,
+        is_fallback: candidate !== locale,
+      };
+    }
+    throw new Error(`Deck not found in any locale chain for ${locale}`);
+  }
+
+  /* -------------------- Regulation articles -------------------- */
+
+  /**
+   * Load the regulation→ACF mapping file (guides/regulation-articles.json).
+   * Cached after first parse.
+   */
+  async loadRegulationArticles(): Promise<RegulationArticlesFile> {
+    if (this.regulationArticlesCache) return this.regulationArticlesCache;
+    const file = path.join(this.root, "guides", "regulation-articles.json");
+    const raw = JSON.parse(await readFile(file, "utf8"));
+    this.regulationArticlesCache = RegulationArticlesFileSchema.parse(raw);
+    return this.regulationArticlesCache;
   }
 }

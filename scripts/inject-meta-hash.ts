@@ -24,7 +24,7 @@ async function main(): Promise<void> {
   );
   // Exclude meta.json itself so the hash is stable across recomputes.
   const target = files.filter((f) => !f.endsWith("/meta.json") && !f.endsWith("\\meta.json"));
-  const hex = await sha256OfFiles(target);
+  const hex = await sha256OfFiles(target, CONTENT_ROOT);
   const metaPath = path.join(CONTENT_ROOT, "meta.json");
   const meta = JSON.parse(await readFile(metaPath, "utf8"));
   meta.content_hash = formatDoctrineHash(hex);

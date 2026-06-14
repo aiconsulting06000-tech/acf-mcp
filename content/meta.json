@@ -1,7 +1,7 @@
 {
   "framework_version": "1.0",
-  "content_build": "2026-06-09T11:26:28.510Z",
-  "content_hash": "sha256:aa8911fb0a1a4c6d18fa56a7a62911c41c4006b66a08c256635bd554b176cce1",
+  "content_build": "2026-06-14T10:47:44.384Z",
+  "content_hash": "sha256:bf0b6d8e4731ebdc58f6d6338702c5b74af47874cf0ad3dc958cde5c5b30b9dc",
   "permanent_archive_url": "https://archive.acfstandard.com/doctrine/v1.0/",
   "rules_version": "2026-06",
   "locales": [
@@ -20,6 +20,6 @@
     "ko"
   ],
   "fallback_locale": "en",
-  "doctrine_signature": "ed25519:wPtRuWgavMK55U8WU/6JmACku9Kvn14mphbZfM1O6JTM8aJF7BXn7Ho+fNiDhaLupsF79UN95bHv1CnEY9NTBw==",
-  "doctrine_public_key": "MCowBQYDK2VwAyEAILiqaUR9IHi3gS5TfvNDPEyRkxR1mAxE6a+zkJHPRss="
+  "doctrine_signature": "ed25519:yqySJDnYnXaAIC37LJXyw3D9F4dDX7Gt29Em7nn9/wW/EXt1Y8ychyrqnLnWqxDpC2Ek+FYsgPPGFm9q/11TCg==",
+  "doctrine_public_key": "MCowBQYDK2VwAyEAojtKfh20SGGV63LMETjZBXRWo2tY0viAYziG/y3/L0s="
 }

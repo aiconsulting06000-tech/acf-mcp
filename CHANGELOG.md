@@ -1,13 +1,39 @@
 # Changelog
 
-## 1.0.4 — 2026-06-14
+## 1.1.0 — 2026-06-14
 
-Repository moved from `aiconsulting06000-tech` to dedicated org `acfstandard`. The old URL keeps redirecting (GitHub 301) — existing clones and registry references stay alive.
+Sovereign doctrine root-of-trust + organisation migration + V2 whitepaper.
+
+**Root-of-trust rekey.** New Ed25519 doctrine keypair, generated and held under
+the author's direct control (private key kept off-machine in a dedicated vault).
+All releases from 1.1.0 onward verify against the new `doctrine_public_key`
+embedded in `content/meta.json` and emitted in every REASON tool footer.
+Previously published versions (1.0.x) remain verifiable against their original
+public key — the rekey is a forward-looking root change, not a retroactive
+invalidation.
+
+**Repository migration.** Code moved from `aiconsulting06000-tech/acf-mcp` to
+the dedicated `acfstandard` organisation. GitHub keeps the old URL 301-redirecting
+indefinitely, so existing clones, npm references and registry source links keep
+resolving.
 
 - `repository.url` → `https://github.com/acfstandard/acf-mcp`
 - `homepage` → `https://acfstandard.io` (new developer documentation site)
-- `mcpName` → `io.github.acfstandard/acf-mcp` (registry identity aligned with the new repo location)
-- `server.json` `name` + `websiteUrl` aligned. No source-level changes, same 245 tests.
+- `mcpName` → `io.github.acfstandard/acf-mcp`
+- `server.json` `name` + `websiteUrl` aligned with the new canonical domain
+
+**Whitepaper V2 (FR).** From-scratch rewrite of `content/whitepaper/fr.md`,
+replacing the December 2025 PDF extract. New material reflects the current state
+of the framework in June 2026: 17 fiches méthodologiques (vs 8 modules in V1),
+the DDAO role formally specified, the 4 autonomy levels N0–N3, the full 17×5
+mapping matrix against EU AI Act / ISO 42001 / NIST AI RMF / GDPR / COBIT, the
+9-product ecosystem (4 free tools + 4 commercial products + acf-mcp), and the
+public cryptographic stack (Ed25519 + SHA-256 chain + RFC 3161). English and
+the 11 other locales remain on the v1 extract and will catch up in 1.2.0.
+
+No code-level changes vs 1.0.3 — same 245 tests pass, same 8 REASON tools,
+same disclaimer, same transport surface. The doctrine `content_hash` shifts
+to reflect the whitepaper rewrite; the new signature attests it.
 
 ## 1.0.3 — 2026-06-09
 

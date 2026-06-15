@@ -44,7 +44,7 @@ The **Agentic Commerce Framework®** (ACF®) is not yet another framework. It is
 
 Led by **Vincent Dorange**, ACF® is summed up in three verbs: **Govern. Measure. Prove.** The standard **governs** (the doctrine, the cards, the DDAO role); the **ACF Sovereignty Score™** **measures** (the 0-100 metric of preserved decisional sovereignty); **ACF Compliance** **proves** (the enforceable cryptographic trace that an independent third party can verify). This articulation answers a precise gap: existing frameworks — EU AI Act, ISO/IEC 42001, NIST AI RMF, GDPR, COBIT — state **what must be done** but do not state **how to operate**, **how to measure**, or **how to prove**. ACF® closes that gap.
 
-ACF® articulates **4 founding principles**, **4 operational layers**, **4 autonomy levels** (N0 to N3), **17 ready-to-use methodological cards** and **a named role** — the **DDAO** (Designated Delegated Agent Officer) — who bears human responsibility for every agent in production. The whole is backed by an enforceable **cryptographic traceability** (Ed25519 signatures, SHA-256 hash chain, RFC 3161 qualified timestamping) that makes every agentic decision auditable, independently of the deployer's infrastructure.
+ACF® articulates **4 founding principles**, **4 operational layers**, **4 autonomy levels** (N0 to N3), **17 ready-to-use methodological cards** and **a named role** — the **DDAO** (Delegated Decision Agent Officer) — who bears human responsibility for every agent in production. The whole is backed by an enforceable **cryptographic traceability** (Ed25519 signatures, SHA-256 hash chain, RFC 3161 qualified timestamping) that makes every agentic decision auditable, independently of the deployer's infrastructure.
 
 The framework does not replace existing standards. It **operationalises** them at the decision level: each of the 17 ACF® cards maps to an EU AI Act article, an ISO/IEC 42001 clause, a NIST AI RMF function, a GDPR article and a COBIT 2019 domain. Any compliance team can therefore integrate ACF® into its existing audit trail within minutes.
 
@@ -156,7 +156,7 @@ ACF® classifies agents by autonomy level. Level **N2** is the recommended targe
 
 The recommended progression is N0 → N1 → N2 → N3. Each step up triggers the controls of card ACF-00 (Sovereignty Score).
 
-### 4.4. The DDAO role — Designated Delegated Agent Officer
+### 4.4. The DDAO role — Delegated Decision Agent Officer
 
 The **DDAO** is the human cornerstone of ACF®. It is the individual or collegial body individually designated as responsible for an agent (or a portfolio of agents) in production.
 

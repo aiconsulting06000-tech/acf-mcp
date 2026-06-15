@@ -44,7 +44,7 @@ L'**Agentic Commerce Framework®** (ACF®) n'est pas un framework de plus. C'est
 
 Porté par **Vincent Dorange**, ACF® se résume en trois verbes : **Govern. Measure. Prove.** Le standard **gouverne** (la doctrine, les fiches, le rôle DDAO) ; le **ACF Sovereignty Score™** **mesure** (la métrique 0-100 de la souveraineté décisionnelle conservée) ; **ACF Compliance** **prouve** (la trace cryptographique opposable qu'un tiers indépendant peut vérifier). Cette articulation répond à un vide précis : les référentiels existants — EU AI Act, ISO/IEC 42001, NIST AI RMF, RGPD, COBIT — disent **ce qu'il faut faire** mais ne disent pas **comment opérer**, **comment mesurer** ni **comment prouver**. ACF® comble ce vide.
 
-ACF® articule **4 principes fondateurs**, **4 couches opérationnelles**, **4 niveaux d'autonomie** (N0 à N3), **17 fiches méthodologiques** prêtes à l'emploi et **un rôle nommé** — le **DDAO** (Designated Delegated Agent Officer) — qui porte la responsabilité humaine de chaque agent en production. L'ensemble s'adosse à une **traçabilité cryptographique** opposable (signatures Ed25519, chaîne de hachage SHA-256, horodatage qualifié RFC 3161) qui rend chaque décision agentique auditable, indépendamment de l'infrastructure du déployeur.
+ACF® articule **4 principes fondateurs**, **4 couches opérationnelles**, **4 niveaux d'autonomie** (N0 à N3), **17 fiches méthodologiques** prêtes à l'emploi et **un rôle nommé** — le **DDAO** (Delegated Decision Agent Officer) — qui porte la responsabilité humaine de chaque agent en production. L'ensemble s'adosse à une **traçabilité cryptographique** opposable (signatures Ed25519, chaîne de hachage SHA-256, horodatage qualifié RFC 3161) qui rend chaque décision agentique auditable, indépendamment de l'infrastructure du déployeur.
 
 Le framework ne remplace pas les standards en vigueur. Il les **opérationnalise** au niveau de la décision : à chacune des 17 fiches ACF® correspond un article de l'EU AI Act, une clause d'ISO/IEC 42001, une fonction du NIST AI RMF, un article du RGPD et un domaine de COBIT 2019. Toute équipe de conformité peut ainsi intégrer ACF® dans son audit trail existant en quelques minutes.
 
@@ -156,7 +156,7 @@ ACF® classe les agents par niveau d'autonomie. Le niveau **N2** est la cible re
 
 La progression recommandée est N0 → N1 → N2 → N3. Chaque passage à un niveau supérieur déclenche les contrôles de la fiche ACF-00 (Score de Souveraineté).
 
-### 4.4. Le rôle DDAO — Designated Delegated Agent Officer
+### 4.4. Le rôle DDAO — Delegated Decision Agent Officer
 
 Le **DDAO** est la pierre angulaire humaine d'ACF®. C'est la personne physique ou l'organe collégial nommément désigné comme responsable d'un agent (ou d'un portefeuille d'agents) en production.
 
